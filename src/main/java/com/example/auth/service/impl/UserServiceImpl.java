@@ -1,7 +1,6 @@
 package com.example.auth.service.impl;
 
 import com.example.auth.repository.AuthRepository;
-import com.example.auth.exception.NotFoundException;
 import com.example.auth.model.User;
 import com.example.auth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.util.NoSuchElementException;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
             return getUserByUsername(username);
         } catch (AuthenticationException e) {
             e.printStackTrace();
-            throw new NotFoundException("User not found: " + username);
+            throw new NoSuchElementException("User not found: " + username);
         }
     }
 

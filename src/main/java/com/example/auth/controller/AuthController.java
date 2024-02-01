@@ -2,10 +2,10 @@ package com.example.auth.controller;
 
 import com.example.auth.dto.request.AuthenticateRequest;
 import com.example.auth.dto.response.UserDto;
-import com.example.auth.exception.NotFoundException;
 import com.example.auth.mapping.StrategyMapper;
 import com.example.auth.model.User;
 import com.example.auth.service.UserService;
+import jakarta.ws.rs.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +17,29 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
+
+
+    /*
+        @RestController
+@RequestMapping("/authentication")
+@Tag(name = "Authentication Controller", description = "Manage authentication of the users")
+public class AuthenticationController {
+    final private AuthenticationService authenticationService;
+    final private KeyCloakService keyCloakService;
+    @Autowired
+    public AuthenticationController(AuthenticationService authenticationService, KeyCloakService keyCloakService) {
+        this.authenticationService = authenticationService;
+        this.keyCloakService = keyCloakService;
+    }
+    @PostMapping("/login")
+    @Operation(summary = "User login",
+            description = "Authentication a user")
+    public ResponseEntity<?> loginUser(@RequestParam String email, @RequestParam String password) {
+        String access_token = (String) keyCloakService.getToken(email, password).getBody();
+        return authenticationService.authenticateUser(email, password, access_token);
+    }
+}
+     */
     private final UserService userService;
     private final StrategyMapper<User, UserDto> userMapper;
     @Autowired
